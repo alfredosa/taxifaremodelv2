@@ -4,8 +4,10 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from xgboost import XGBRegressor
 from memoized_property import memoized_property
 import mlflow
+import joblib
 from mlflow.tracking import MlflowClient
 from . import get_data,utils,encoders
 
@@ -39,7 +41,7 @@ class Trainer():
             ], remainder="drop")
         pipe = Pipeline([
             ('preproc', preproc_pipe),
-            ('linear_model', LinearRegression())
+            ('linear_model', XGBRegressor())
         ])
         self.pipeline = pipe
 
@@ -51,10 +53,13 @@ class Trainer():
         """evaluates the pipeline on df_test and return the RMSE"""
         y_pred = self.pipeline.predict(X_test)
         evalres = utils.compute_rmse(y_pred, y_test)
-        self.mlflow_run()
         self.mlflow_log_metric("rmse", evalres)
-        self.mlflow_log_param("model", "LinearRegression")
+        self.mlflow_log_param("model", "XGboost")
         return
+
+    def save_model(self):
+        """ Save the trained model into a model.joblib file """
+        pass
 
     @memoized_property
     def mlflow_client(self):
@@ -86,5 +91,5 @@ if __name__ == "__main__":
     trainer = Trainer(X_train, y_train)
     trainer.set_pipeline()
     trainer.run()
-    eval = trainer.evaluate(X_test,y_test)
-    print(eval)
+    trainer.evaluate(X_test,y_test)
+    print("Finished loading experiment in MLFLOW")

@@ -30,3 +30,8 @@ memoized-property
 termcolor
 mlflow
 memoized
+category-encoders
+memoized-property
+psutil
+xgboost
+pygeohash
