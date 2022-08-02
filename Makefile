@@ -2,10 +2,10 @@
 LOCAL_PATH=PATH_TO_FILE_train_1k.csv
 
 # project id
-PROJECT_ID=XXX
+PROJECT_ID=taxifaremodel-357906
 
 # bucket name
-BUCKET_NAME=XXX
+BUCKET_NAME=model_taxifaremodel357906
 
 # bucket directory in which to store the uploaded file (we choose to name this data as a convention)
 BUCKET_FOLDER=data

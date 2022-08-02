@@ -1,6 +1,5 @@
 import os
 from math import sqrt
-
 import joblib
 import pandas as pd
 from TaxiFareModel.params import MODEL_NAME

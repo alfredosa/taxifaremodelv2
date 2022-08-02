@@ -1,4 +1,8 @@
 MANIFEST.in
+Makefile
+Makefile_ignore
+model.joblib
+predict.py
 requirements.txt
 setup.py
 TaxiFareModel/__init__.py
@@ -15,3 +19,4 @@ TaxiFareModel.egg-info/requires.txt
 TaxiFareModel.egg-info/top_level.txt
 api/__init__.py
 api/fast.py
+notebooks/API usage.ipynb
